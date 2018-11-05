@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/mtumilowicz/java11-collectors-collectingAndThen.svg?branch=master)](https://travis-ci.com/mtumilowicz/java11-collectors-collectingAndThen)
+
 # java11-collectors-collectingAndThen
 The main goal of this project is to show how to use `collectingAndThen`
 from collectors API.
