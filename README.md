@@ -28,7 +28,7 @@ All tests are in `CollectingAndThenTest` class
                     Collectors.toList(), 
                     ImmutableList::copyOf));    
     ```
-1. from a stream of integers find a max positive value or return -1
+1. in a stream of integers find a max positive value or return -1
     ```
     Integer max = stream
             .filter(x -> x >= 0)
