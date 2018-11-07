@@ -26,7 +26,7 @@ public class CollectingAndThenTest {
         Integer max = Stream.of(-1)
                 .filter(x -> x >= 0)
                 .collect(Collectors.collectingAndThen(
-                        Collectors.maxBy(Comparator.<Integer>naturalOrder()),
+                        Collectors.maxBy(Comparator.naturalOrder()),
                         x -> x.orElse(-1)));
 
         assertThat(max, is(-1));
@@ -37,7 +37,7 @@ public class CollectingAndThenTest {
         Integer max = Stream.of(1, 2, 3)
                 .filter(x -> x >= 0)
                 .collect(Collectors.collectingAndThen(
-                        Collectors.maxBy(Comparator.<Integer>naturalOrder()),
+                        Collectors.maxBy(Comparator.naturalOrder()),
                         x -> x.orElse(-1)));
 
         assertThat(max, is(3));
