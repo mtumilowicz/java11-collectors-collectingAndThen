@@ -35,7 +35,7 @@ All tests are in `CollectingAndThenTest` class
     Integer max = stream
             .filter(x -> x >= 0)
             .collect(Collectors.collectingAndThen(
-                    Collectors.maxBy(Comparator.<Integer>naturalOrder()),
+                    Collectors.maxBy(Comparator.naturalOrder()),
                     x -> x.orElse(-1)));    
     ```
 1. collect stream to list and check if result list is not empty
