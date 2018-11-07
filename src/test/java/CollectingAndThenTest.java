@@ -26,7 +26,18 @@ public class CollectingAndThenTest {
         Integer max = Stream.of(-1)
                 .filter(x -> x >= 0)
                 .collect(Collectors.collectingAndThen(
-                        Collectors.maxBy(Comparator.naturalOrder()),
+                        /*
+                        without <Integer> - compilation error
+                        
+                        Error:(28, 36) java: method collectingAndThen in class java.util.stream.Collectors 
+                        cannot be applied to given types;
+                          required: java.util.stream.Collector<T,A,R>,java.util.function.Function<R,RR>
+                          found: java.util.stream.Collector<T,capture#1 of ?,java.util.Optional<T>>,(x)->x.orElse(-1)
+                          reason: inferred type does not conform to equality constraint(s)
+                            inferred: T
+                            equality constraints(s): T
+                         */
+                        Collectors.maxBy(Comparator.<Integer>naturalOrder()),
                         x -> x.orElse(-1)));
 
         assertThat(max, is(-1));
@@ -37,7 +48,7 @@ public class CollectingAndThenTest {
         Integer max = Stream.of(1, 2, 3)
                 .filter(x -> x >= 0)
                 .collect(Collectors.collectingAndThen(
-                        Collectors.maxBy(Comparator.naturalOrder()),
+                        Collectors.maxBy(Comparator.<Integer>naturalOrder()),
                         x -> x.orElse(-1)));
 
         assertThat(max, is(3));
