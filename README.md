@@ -4,6 +4,8 @@
 The main goal of this project is to show how to use `collectingAndThen`
 from collectors API.
 
+* Reference: [Exploring Collectors by Venkat Subramaniam](https://www.youtube.com/watch?v=pGroX3gmeP8)
+
 # preface
 ```
 public static<T,A,R,RR> 
@@ -45,4 +47,12 @@ All tests are in `CollectingAndThenTest` class
                       .collect(Collectors.collectingAndThen(
                               Collectors.toList(),
                               List::isEmpty)));    
+    ```
+1. find name of the oldest person
+    ```
+    String nameOfTheOldest = persons.stream()
+            .collect(Collectors.collectingAndThen(
+                    Collectors.maxBy(Comparator.comparing(Person::getAge)),
+                    x -> x.map(Person::getName).orElse("")
+            ));
     ```
