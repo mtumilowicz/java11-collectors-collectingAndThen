@@ -1,6 +1,7 @@
 import com.google.common.collect.ImmutableList;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,6 +11,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 public class CollectingAndThenTest {
+
     @Test
     public void toGuavaCollections() {
         ImmutableList<Integer> collect = Stream.of(1)
@@ -66,5 +68,28 @@ public class CollectingAndThenTest {
                 .collect(Collectors.collectingAndThen(
                         Collectors.toList(),
                         List::isEmpty)));
+    }
+
+    @Test
+    public void findNameOfTheOldestPerson() {
+//        given
+        List<Person> persons = Arrays.asList(
+                new Person("A", 10),
+                new Person("B", 9),
+                new Person("C", 6),
+                new Person("D", 10),
+                new Person("E", 7),
+                new Person("F", 3)
+        );
+
+//        when
+        String nameOfTheOldest = persons.stream()
+                .collect(Collectors.collectingAndThen(
+                        Collectors.maxBy(Comparator.comparing(Person::getAge)),
+                        x -> x.map(Person::getName).orElse("")
+                ));
+
+//        then
+        assertEquals(nameOfTheOldest, "A");
     }
 }
