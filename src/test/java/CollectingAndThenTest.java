@@ -9,9 +9,6 @@ import java.util.stream.Stream;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
-/**
- * Created by mtumilowicz on 2018-11-04.
- */
 public class CollectingAndThenTest {
     @Test
     public void toGuavaCollections() {
